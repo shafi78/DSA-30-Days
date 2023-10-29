@@ -1,0 +1,18 @@
+// Function overloading : Function with same name and different parameters
+
+public class S_06_Function_overloading {
+
+
+    public static int sum(int a,int b){
+        return a+b ;
+    }
+
+    public static int sum(int a,int b,int c) {
+        return a+b+c ;
+    }
+
+    public static void main(String args[]) {
+        System.out.println(sum(5,6));
+        System.out.println(sum(1,2,3));
+    }
+}
