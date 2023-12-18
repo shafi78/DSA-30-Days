@@ -6,3 +6,4 @@
 4. Pattern Problems 
 5. Arrays
 6. Sorting Algo & 2D Arrays
+7. Strings
