@@ -7,3 +7,5 @@
 5. Arrays
 6. Sorting Algo & 2D Arrays
 7. Strings
+8. BIT MANIPULATION
+9. OOP's
