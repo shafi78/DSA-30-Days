@@ -9,7 +9,7 @@ public class S_05_print_nth_fibonacci_number {
     }
 
     public static void main(String args[]) {
-        System.out.println(fib(5));
+        System.out.println(fib(3));
     }
 }
 

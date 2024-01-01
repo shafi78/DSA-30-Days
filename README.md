@@ -11,3 +11,5 @@
 9. OOP's
 10. Recursion
 11. Divide & Conquer
+12. Time & Space Complexity
+13. Backtracking
