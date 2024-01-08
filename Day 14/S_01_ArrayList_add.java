@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class S_01_ArrayList_add {
+    public static void main(String args[]) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(1); // O(1)
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        // another method to add using index
+
+        list.add(1, 9); // O(n)
+
+        System.out.println(list);
+    }
+}
