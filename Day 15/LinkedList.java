@@ -237,7 +237,10 @@ public class LinkedList {
         // System.out.println(ll.RecursiveSearch(3));
         // System.out.println(ll.RecursiveSearch(10));
 
-        ll.reverse();
+        // ll.reverse();
+        // ll.print();
+
+        ll.deleteNthNodefronEnd(3);
         ll.print();
     }
 }
