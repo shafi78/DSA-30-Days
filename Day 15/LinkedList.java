@@ -15,6 +15,8 @@ public class LinkedList {
     public static Node tail;
     public static int size;
 
+    // 1. add a node at the begining
+
     public void addFirst(int data) {
         // step 1: create new node
         Node newNode = new Node(data);
@@ -33,6 +35,8 @@ public class LinkedList {
 
     }
 
+    // 2. add a node at the end
+
     public void addLast(int data) {
         Node newNode = new Node(data);
         size++;
@@ -46,6 +50,8 @@ public class LinkedList {
 
         tail = newNode;
     }
+
+    // 3. print the linked list
 
     public void print() {
         Node temp = head;
@@ -61,6 +67,8 @@ public class LinkedList {
         }
         System.out.println("null");
     }
+
+    // 4. add an element at the given index
 
     public void add(int idx, int data) {
         if (idx == 0) {
@@ -82,6 +90,8 @@ public class LinkedList {
         temp.next = newNode;
     }
 
+    // 5. remove first element
+
     public int removeFirst() {
         if (size == 0) {
             System.out.println("Linked List is empty");
@@ -100,6 +110,8 @@ public class LinkedList {
         size--;
         return val;
     }
+
+    // 6. remove last element
 
     public int removeLast() {
         if (size == 0) {
@@ -126,7 +138,7 @@ public class LinkedList {
         return val;
     }
 
-    // using loop
+    // 7. search in the linked list (using loop)
 
     public int IterativeSearch(int key) {
         Node temp = head;
@@ -143,7 +155,7 @@ public class LinkedList {
         return -1;
     }
 
-    // using recursion
+    // search in the linked list (using recursion)
 
     public int helper(Node head, int key) {
         if (head == null) {
@@ -166,7 +178,7 @@ public class LinkedList {
         return helper(head, key);
     }
 
-    // reverse linked list
+    // 8. reverse a linked list
 
     public void reverse() {
         Node prev = null;
@@ -182,7 +194,7 @@ public class LinkedList {
         head = prev;
     }
 
-    // find and remove nth node from end
+    // 9. find and remove nth node from end
 
     public void deleteNthNodefronEnd(int n) {
         int sz = 0;
@@ -211,18 +223,124 @@ public class LinkedList {
         return;
     }
 
+    // 10. checking the linked list is palindrome or not
+
+    // 1. slow - fast approach (finding mid) helper function
+
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow;
+    }
+
+    public boolean checkPalindrome() {
+
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        // step 1: find mid
+        Node midNode = findMid(head);
+
+        // step 2: reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node right = prev; // right half head
+        Node left = head;
+
+        // step 3. left half == right half
+
+        while (right != null) {
+            if (left.data != right.data) {
+                return false;
+            }
+
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
+    // 11. detecting cycle in Linked List
+
+    public static boolean isCycle() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // 12. removing cycle in Linked List
+
+    public static void removeCycle() {
+        // detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (fast == slow) {
+                cycle = true;
+                break;
+            }
+        }
+
+        if (cycle == false) {
+            return;
+        }
+
+        // finding meeting point
+        slow = head;
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // remove cycle
+        prev.next = null;
+    }
+
     public static void main(String args[]) {
-        LinkedList ll = new LinkedList();
+        // LinkedList ll = new LinkedList();
 
-        ll.print();
+        // ll.print();
 
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(3);
-        ll.addLast(4);
-        ll.add(2, 9);
+        // ll.addFirst(2);
+        // ll.addFirst(1);
+        // ll.addLast(3);
+        // ll.addLast(4);
+        // ll.add(2, 9);
 
-        ll.print();
+        // ll.print();
         // System.out.println(ll.size);
 
         // ll.removeFirst();
@@ -240,7 +358,23 @@ public class LinkedList {
         // ll.reverse();
         // ll.print();
 
-        ll.deleteNthNodefronEnd(3);
-        ll.print();
+        // ll.deleteNthNodefronEnd(3);
+        // ll.print();
+
+        // System.out.println(ll.checkPalindrome());
+
+        // Detect cycle in linked list
+        head = new Node(1);
+        Node temp = new Node(2);
+        head.next = temp;
+        head.next.next = new Node(3);
+        head.next.next.next = temp;
+        // 1->2->3->2
+
+        System.out.println(isCycle());
+
+        removeCycle();
+
+        System.out.println(isCycle());
     }
 }
