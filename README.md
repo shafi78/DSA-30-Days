@@ -1,4 +1,4 @@
-# DSA-100-Days-challenge
+# DSA-30-Days-challenge
 
 1. Some basic problems
 2. Some more basic problems
@@ -15,3 +15,4 @@
 13. Backtracking
 14. Array List
 15. Linked List
+16. Stack 
